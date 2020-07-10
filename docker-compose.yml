@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  funkful_api:
+
+volumes:
+  postgres:
+
+services:
+  api:
+    image: shia786/laravel
+    container_name: funkful_api
+    working_dir: /var/www/html
+    volumes:
+      - ./api:/var/www/html
+    networks:
+      - funkful_api
+  db:
+    image: postgres:11
+    container_name: funkful_db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./docker/postgres/.env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./docker/postgres/scripts:/usr/local/sbin
+    networks:
+      - funkful_api
