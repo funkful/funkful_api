@@ -89,8 +89,17 @@ class LibraryController extends Controller
      * @param object $library
      * @return LibraryResource
      */
-    public function addFolders(Library $library)
+    public function addFolders(Request $request, $library)
     {
-        //
+        $library = Library::find($library);
+        $folders = explode(',', $request->get('folders'));
+        foreach ($folders as $folder)
+        {
+            $libraryFolder = $library->folder()->create([
+                'path' => $folder,
+            ]);
+
+            return $libraryFolder;
+        }
     }
 }
