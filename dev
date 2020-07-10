@@ -47,6 +47,10 @@ if [ $# -gt 0 ];then
       run api php artisan doctrine:migrations:migrate
       run db sync_database
     
+    elif [ "$1" == "perm-storage" ]; then
+      chmod -R 775 api/storage
+      chmod -R 775 api/bootstrap/cache
+
     elif [ "$1" == "perm-api" ]; then
       sudo chown -R asif api
 

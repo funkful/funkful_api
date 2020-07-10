@@ -14,8 +14,8 @@ class CreateLibraryFoldersTable extends Migration
     public function up()
     {
         Schema::create('library_folders', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('library_id');
+            $table->uuid('id')->primary();
+            $table->uuid('library_id');
             $table->string('path');
             $table->timestamps();
 

@@ -8,3 +8,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/video', 'Api\VideoController@index');
+
+Route::prefix('libraries')->group(function () {
+    Route::get('/', 'Api\LibraryController@index');
+    Route::post('/store', 'Api\LibraryController@store');
+    Route::get('/{Library}', 'Api\LibraryController@show');
+    Route::patch('/{Library}/update', 'Api\LibraryController@update');
+    Route::delete('/{Library}/destroy', 'Api\LibraryController@destroy');
+    Route::post('/{Library}/add-folders', 'Api\LibraryController@addFolders');
+});

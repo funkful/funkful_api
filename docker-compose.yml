@@ -11,6 +11,8 @@ services:
     image: shia786/laravel
     container_name: funkful_api
     working_dir: /var/www/html
+    ports: 
+      - "80:80"
     volumes:
       - ./api:/var/www/html
     networks:
